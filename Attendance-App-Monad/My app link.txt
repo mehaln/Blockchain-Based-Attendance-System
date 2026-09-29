@@ -1,0 +1,4 @@
+﻿Your Attendance App link:
+https://attendance-app-topaz-one.vercel.app
+
+Open it, create your class, then share the class link with your students.

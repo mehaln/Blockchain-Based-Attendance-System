@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Attendance</title>
+    <meta name="description" content="Blockchain class attendance on Monad Testnet. One click to mark yourself present." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./" id="homeLink">
+          <div class="logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+              <path d="m9 16 2 2 4-4" />
+            </svg>
+          </div>
+          <div>
+            <h1>Class Attendance</h1>
+            <p>On the Monad blockchain</p>
+          </div>
+        </a>
+        <div class="wallet">
+          <span id="networkChip" class="chip"></span>
+          <button id="walletBtn" class="btn" type="button">Connect wallet</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" aria-live="polite">
+      <div class="empty">Loading…</div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <noscript><p style="padding:16px">This app needs JavaScript. Please enable it in your browser.</p></noscript>
+
+    <script src="vendor/ethers.umd.min.js"></script>
+    <script src="config.js"></script>
+    <script src="contract.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

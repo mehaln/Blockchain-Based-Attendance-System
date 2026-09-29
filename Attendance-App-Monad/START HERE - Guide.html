@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Attendance App Guide</title>
+<style>
+  :root {
+    --accent: #0f766e; --accent-soft: #e6f4f2; --bg: #f5f6fa; --surface: #ffffff; --text: #151922;
+    --muted: #5a6376; --border: #e1e4ec; --warn: #fef3c7; --warn-line: #d9a520; --ok: #dcfce7;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --accent-soft: #12302d; --bg: #0e1016; --surface: #161922; --text: #e7e9ef; --muted: #9aa2b4;
+      --border: #2a2f3c; --warn: #3a2f10; --warn-line: #a17c14; --ok: #12301d; color-scheme: dark; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { background: var(--accent); color: #fff; padding: 28px 16px; }
+  header .wrap { padding: 0 16px; }
+  header h1 { margin: 0 0 4px; font-size: 28px; }
+  header p { margin: 0; opacity: .9; }
+  h2 { font-size: 21px; margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
+  .num { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-size: 16px; }
+  section { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; margin: 16px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 6px 0; }
+  a { color: var(--accent); font-weight: 600; }
+  @media (prefers-color-scheme: dark) { a { color: #5eead4; } }
+  .file { font-family: Consolas, monospace; background: var(--accent-soft); padding: 2px 7px; border-radius: 6px; font-size: .95em; white-space: nowrap; }
+  .tip { background: var(--warn); border-left: 4px solid var(--warn-line); padding: 10px 14px; border-radius: 8px; margin: 12px 0; }
+  .good { background: var(--ok); padding: 10px 14px; border-radius: 8px; margin: 12px 0; }
+  .muted { color: var(--muted); }
+  img { max-width: 100%; border: 1px solid var(--border); border-radius: 10px; margin: 8px 0; display: block; }
+  .pics { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; align-items: start; }
+  @media (max-width: 640px) { .pics { grid-template-columns: 1fr; } }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-size: 13px; text-transform: uppercase; }
+  pre { white-space: pre-wrap; background: var(--accent-soft); padding: 12px 14px; border-radius: 8px; font: 14px/1.5 "Segoe UI", sans-serif; }
+  .toc a { font-weight: 500; }
+  details { margin: 8px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Class Attendance App</h1>
+    <p>Students mark themselves present with one tap. Every mark is saved on the Monad blockchain, so nobody can change it later.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="toc">
+  <strong>What you'll do (about 20 minutes, only once):</strong>
+  <ol>
+    <li><a href="#s1">Install MetaMask</a> (your free wallet and login)</li>
+    <li><a href="#s2">Get free test MON</a> (play money that pays for clicks)</li>
+    <li><a href="#s3">Put the app online</a> (double-click one file)</li>
+    <li><a href="#s4">Create your class</a> (one click)</li>
+    <li><a href="#s5">Add your students</a></li>
+    <li><a href="#s6">Take attendance</a> in every lecture</li>
+  </ol>
+  <p class="muted">Everything here runs on <b>Monad Testnet</b>, a practice blockchain. The MON coins are free test coins with no real value. You never pay real money.</p>
+</section>
+
+<div class="tip"><b>Before you start:</b> if you got this folder as a <b>.zip</b> file, right-click it and choose <b>Extract All</b>. The files inside don't work while they are still in the zip.</div>
+
+<section id="s1">
+  <h2><span class="num">1</span>Install MetaMask</h2>
+  <p>MetaMask is a free wallet. It works like your login for the app.</p>
+  <ol>
+    <li>Open <a href="https://metamask.io/download/" target="_blank">metamask.io/download</a> in <b>Google Chrome</b> or <b>Microsoft Edge</b> and click <b>Install MetaMask</b>.</li>
+    <li>Click <b>Create a new wallet</b> and choose a password.</li>
+    <li>MetaMask shows a <b>Secret Recovery Phrase</b> (12 words). <b>Write it on paper and keep it safe.</b> It is the only way to get your wallet back, and your class belongs to this wallet.</li>
+    <li>Click the puzzle piece icon at the top right of the browser and <b>pin</b> the MetaMask fox, so it's always visible.</li>
+  </ol>
+  <div class="tip">Never share your Secret Recovery Phrase with anyone. The app never asks for it.</div>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span>Get free test MON</h2>
+  <ol>
+    <li>Click the MetaMask fox and click your account name at the top to <b>copy your wallet address</b> (a long code starting with <span class="file">0x</span>).</li>
+    <li>Open the Monad faucet: <a href="https://faucet.monad.xyz" target="_blank">faucet.monad.xyz</a>. Paste your address and request MON.</li>
+  </ol>
+  <p>How much you need:</p>
+  <table>
+    <tr><th>Action</th><th>Cost (test MON)</th></tr>
+    <tr><td>Create your class (once)</td><td>about 0.22. Your wallet needs <b>at least 0.5</b> at that moment</td></tr>
+    <tr><td>Start or end a lecture</td><td>about 0.01 each</td></tr>
+    <tr><td>Add students</td><td>about 0.03, plus the MON you give them</td></tr>
+    <tr><td>A student taps "Mark me present"</td><td>about 0.011 (paid by the student from the MON you give them)</td></tr>
+  </table>
+  <p class="muted">Tip: collect <b>2 or more MON</b> before you start. The faucet can be used again later.</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span>Put the app online (once)</h2>
+  <p>Students need a web link they can open on their phones. This step gives you one, for free, using a service called <b>Vercel</b>.</p>
+  <ol>
+    <li>In this folder, double-click <span class="file">2 - Put App Online (Vercel).bat</span></li>
+    <li>If Windows says <b>"Windows protected your PC"</b>, click <b>More info</b> and then <b>Run anyway</b>. This is normal for files you receive from someone.</li>
+    <li>The first time, it downloads a small helper (about 30 MB, 1-2 minutes). Nothing gets installed on the laptop. Just wait.</li>
+    <li>A browser page opens to <b>log in to Vercel</b>. Click <b>Continue with Google</b> (or use your email) and create the free account. If it asks for a plan, choose <b>Hobby</b> (free). Then click <b>Allow</b> / <b>Confirm</b> and go back to the black window.</li>
+    <li>Wait about a minute. Your app opens in the browser, and its link is saved in <span class="file">My app link.txt</span> in this folder.</li>
+  </ol>
+  <div class="good">Your app link looks like <b>https://attendance-app-….vercel.app</b>. Bookmark it. You only do this step once.</div>
+  <details>
+    <summary>Just want to try it on this laptop first?</summary>
+    <p>Double-click <span class="file">1 - Open App on This Laptop.bat</span>. The app opens at <span class="file">http://localhost:5510</span>. Keep the black window open while you use it. This version only works on your laptop, so students can't use it. Use step 3 for real classes.</p>
+  </details>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span>Create your class</h2>
+  <ol>
+    <li>Open your app link and click <b>Connect wallet</b> (top right), then click <b>Connect</b> in MetaMask.</li>
+    <li>MetaMask asks to <b>add and switch to Monad Testnet</b>. Click <b>Approve</b> and then <b>Switch network</b>.</li>
+    <li>Under <b>I'm a teacher</b>, type your class name (for example <i>TY BSc CS - Blockchain</i>) and click <b>Create my class</b>.</li>
+    <li>MetaMask shows a confirmation. Click <b>Confirm</b>. After a few seconds your class page opens, marked <b>You are the teacher</b>.</li>
+  </ol>
+  <p class="muted">Your class is saved on the blockchain. The home page of your app shows it under <b>Your classes</b>, and the class link always opens it.</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span>Add your students</h2>
+  <p>On your class page, under <b>Share the class link</b>, click <b>Share on WhatsApp</b> and send the link to your class group. Then pick one of these two ways:</p>
+  <p><b>Way A (recommended): you add them and give them free MON.</b></p>
+  <ol>
+    <li>Each student opens the link, installs MetaMask (see the student message below), and taps <b>Connect</b>.</li>
+    <li>They see <b>"You're not in this class yet"</b> and tap <b>Send it on WhatsApp</b>. You receive their wallet address.</li>
+    <li>In <b>Add students</b>, paste one student per line, <b>name, address</b>, like this:
+      <pre>Priya Sharma, 0x1a2b…
+Rahul Verma, 0x3c4d…</pre></li>
+    <li>Leave <b>0.1</b> in "Free MON to send each student", click <b>Add students</b>, and <b>Confirm</b> in MetaMask. You can add up to 100 students in one go.</li>
+  </ol>
+  <p><b>Way B: students join by themselves.</b> Click <b>Turn on</b> next to "Students can join by themselves". Students then type their name and tap <b>Join class</b>. For this they need their own MON from the faucet. Turn it <b>off</b> when everyone has joined, so strangers can't join. You can remove anyone with the <b>×</b> in the student list.</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span>Take attendance in every lecture</h2>
+  <ol>
+    <li>Open your class page and click <b>Start lecture</b>. The name is filled in for you. Then <b>Confirm</b> in MetaMask.</li>
+    <li>Tell students to open the class link and tap <b>Mark me present</b>. Their names appear on your screen by themselves.</li>
+    <li>At the end, click <b>End lecture</b> and <b>Confirm</b>. After that, nobody can mark attendance for that lecture.</li>
+  </ol>
+  <p>The <b>Students</b> table shows ✓ and – for each lecture, with totals and percentages. Click <b>Download for Excel</b> to get the full register as a spreadsheet.</p>
+  <p>When students' MON runs low, use <b>Send this much MON to every student</b> at the bottom of the table.</p>
+  <div class="pics">
+    <div><img src="guide-images/teacher.png" alt="Teacher view with a lecture open" /><div class="muted">Your view during a lecture</div></div>
+    <div><img src="guide-images/student-phone.png" alt="Student view on a phone" /><div class="muted">What a student sees</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Message to send your students</h2>
+  <p class="muted">Copy this, add your class link at the end, and send it on WhatsApp:</p>
+<pre>Hi everyone! Attendance for our class is now on the blockchain.
+1. Install the MetaMask app from the Play Store / App Store and create a wallet. Write down the 12 secret words and keep them safe.
+2. Open the class link below. On a phone, tap "Open in MetaMask app".
+3. Tap "Connect". If you are not in the class yet, tap "Send it on WhatsApp" and send it to me.
+4. During each lecture, open the link and tap "Mark me present". That's it!
+Class link: </pre>
+</section>
+
+<section>
+  <h2>If something goes wrong</h2>
+  <details><summary>"Windows protected your PC" when double-clicking</summary><p>Click <b>More info</b>, then <b>Run anyway</b>.</p></details>
+  <details><summary>I clicked a button but nothing happened</summary><p>MetaMask may be waiting behind the browser window. Click the MetaMask fox at the top right and press <b>Confirm</b>.</p></details>
+  <details><summary>It says "Wrong network"</summary><p>Click any button in the app, and approve switching to <b>Monad Testnet</b> in MetaMask.</p></details>
+  <details><summary>"Your wallet does not have enough MON"</summary><p>Get more free MON at <a href="https://faucet.monad.xyz" target="_blank">faucet.monad.xyz</a>. If it's a student, send them some with <b>Send this much MON to every student</b>.</p></details>
+  <details><summary>"You cancelled it in MetaMask"</summary><p>You pressed Reject. Nothing was changed. Click the button again and choose <b>Confirm</b>.</p></details>
+  <details><summary>I can't find my class</summary><p>Open your app link. Your classes are listed under <b>Your classes</b> on the home page (in the same browser). You can also use the class link you shared on WhatsApp.</p></details>
+  <details><summary>New laptop, or MetaMask reinstalled</summary><p>In MetaMask choose <b>Import using Secret Recovery Phrase</b> and type your 12 words. Only the wallet that created the class can start and end lectures.</p></details>
+  <details><summary>I want to put the app online again (or update it)</summary><p>Double-click <span class="file">2 - Put App Online (Vercel).bat</span> again. You keep the same link.</p></details>
+</section>
+
+<p class="muted" style="text-align:center">Built on Monad Testnet (chain ID 10143) · Explorer: <a href="https://testnet.monadvision.com" target="_blank">testnet.monadvision.com</a></p>
+</div>
+</body>
+</html>
